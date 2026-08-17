@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-concreto text-grafite font-sans antialiased; }
+  :focus-visible { @apply outline-none ring-4 ring-cipa/40 ring-offset-2 ring-offset-concreto; }
+  ::selection { @apply bg-cipa text-white; }
+}
+
+@layer components {
+  /* Marcação de piso industrial. Usada só onde a ação é irreversível. */
+  .faixa-seguranca {
+    background-image: repeating-linear-gradient(
+      45deg, #E8A317 0 10px, #14201A 10px 20px
+    );
+  }
+
+  .rotulo {
+    @apply font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-grafite-claro;
+  }
+
+  .cartao {
+    @apply rounded-2xl border border-concreto-escuro bg-white shadow-cartao;
+  }
+
+  .botao {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3
+           font-display text-sm font-semibold uppercase tracking-wider
+           transition active:scale-[.98] disabled:pointer-events-none disabled:opacity-40;
+  }
+  .botao-primario { @apply botao bg-cipa text-white hover:bg-cipa-escuro; }
+  .botao-secundario { @apply botao border border-concreto-escuro bg-white text-grafite hover:bg-concreto; }
+  .botao-perigo { @apply botao bg-alerta text-white hover:brightness-95; }
+
+  .campo {
+    @apply w-full rounded-xl border-2 border-concreto-escuro bg-white px-4 py-4
+           text-lg text-grafite placeholder:text-grafite-claro focus:border-cipa;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media print {
+  .nao-imprimir { display: none !important; }
+  body { background: #fff; }
+}
