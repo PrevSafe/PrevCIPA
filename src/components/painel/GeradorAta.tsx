@@ -24,9 +24,9 @@ export function GeradorAta({ eleicaoId, ataSalva }: { eleicaoId: string; ataSalv
         return;
       }
       setMarkdown(dados.markdown);
-      setAviso({ tom: 'ok', texto: 'Ata gerada. Revise antes de assinar — o texto é uma minuta.' });
+      setAviso({ tom: 'ok', texto: 'Ata gerada a partir do modelo padrão. Confira os dados antes de assinar.' });
     } catch {
-      setAviso({ tom: 'erro', texto: 'Falha de rede ao falar com o serviço de IA.' });
+      setAviso({ tom: 'erro', texto: 'Falha de rede ao encerrar a eleição. Tente novamente.' });
     } finally {
       setCarregando(null);
     }
@@ -66,8 +66,9 @@ export function GeradorAta({ eleicaoId, ataSalva }: { eleicaoId: string; ataSalv
       )}
 
       <p className="nao-imprimir mt-6 max-w-2xl text-sm text-grafite-claro">
-        A ata é uma minuta redigida por IA a partir dos números apurados. A responsabilidade
-        técnica pela conferência e pela assinatura continua sendo da comissão eleitoral.
+        A ata é preenchida a partir de modelo fixo com os números apurados no banco — a mesma
+        eleição gera sempre o mesmo texto. A conferência e a assinatura continuam sendo
+        responsabilidade da comissão eleitoral.
       </p>
     </div>
   );
